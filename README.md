@@ -1,6 +1,6 @@
 # Currency Converter Pro
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-blue?style=for-the-badge&logo=netlify)](https://your-netlify-url.netlify.app)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Site-blue?style=for-the-badge&logo=netlify)](https://currency772.netlify.app/)
 
 A modern, professional-grade currency converter web application with advanced UI/UX, real-time exchange rates, and comprehensive features for seamless currency conversion.
 
