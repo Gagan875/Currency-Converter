@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Font Awesome fallback icons */
+        .fa-spinner:before { content: "⟳"; }
+        .fa-arrow-right-arrow-left:before { content: "⇄"; }
+        .fa-spin { animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Currency Converter</h1>
+        <form>
+            <div>
+                <div class="amount">
+                    <p>Enter amount</p>
+                    <input value="100" type="text" />
+                </div>
+                <div class="dropdown">
+                    <div class="from">
+                        <p>From</p>
+                        <div class="select-container">
+                            <img src="https://flagsapi.com/US/flat/64.png">   
+                            <select name="from">
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="AUD">AUD</option>
+                                <option value="INR">INR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="fa-arrow-right-arrow-left swap-btn" title="Swap currencies"></span>
+                    <div class="to">
+                        <p>To</p>
+                        <div class="select-container">
+                            <img src="https://flagsapi.com/IN/flat/64.png">   
+                            <select name="to">
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="AUD">AUD</option>
+                                <option value="INR" selected>INR</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="msg">1 USD = 80 INR</div>
+            <div class="loading" style="display: none;">
+                <span class="fa-spinner fa-spin"></span> Loading...
+            </div>
+            <div class="error" style="display: none;"></div>
+            <button>Get Exchange Rate</button>
+        </form>
+    </div>
+    <script src="code.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
