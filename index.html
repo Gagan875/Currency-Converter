@@ -3,61 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
+    <title>Currency Converter Pro</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Font Awesome fallback icons */
-        .fa-spinner:before { content: "⟳"; }
-        .fa-arrow-right-arrow-left:before { content: "⇄"; }
-        .fa-spin { animation: spin 1s linear infinite; }
+        /* Advanced icons and animations */
+        .icon { font-style: normal; font-weight: normal; }
+        .icon-swap:before { content: "⇄"; }
+        .icon-spinner:before { content: "⟳"; }
+        .icon-trending:before { content: "📈"; }
+        .icon-history:before { content: "🕒"; }
+        .icon-star:before { content: "⭐"; }
+        .icon-settings:before { content: "⚙️"; }
+        .spin { animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Currency Converter</h1>
-        <form>
-            <div>
-                <div class="amount">
-                    <p>Enter amount</p>
-                    <input value="100" type="text" />
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="icon-trending"></span>
+                    <h1>CurrencyPro</h1>
                 </div>
-                <div class="dropdown">
-                    <div class="from">
-                        <p>From</p>
-                        <div class="select-container">
-                            <img src="https://flagsapi.com/US/flat/64.png">   
-                            <select name="from">
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="AUD">AUD</option>
-                                <option value="INR">INR</option>
-                            </select>
+                <div class="header-actions">
+                    <button class="icon-btn" id="historyBtn" title="Conversion History">
+                        <span class="icon icon-history"></span>
+                    </button>
+                    <button class="icon-btn" id="favoritesBtn" title="Favorite Currencies">
+                        <span class="icon icon-star"></span>
+                    </button>
+                    <button class="icon-btn" id="settingsBtn" title="Settings">
+                        <span class="icon icon-settings"></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <div class="converter-card">
+                <!-- Quick Amount Buttons -->
+                <div class="quick-amounts">
+                    <button class="quick-btn" data-amount="1">1</button>
+                    <button class="quick-btn" data-amount="10">10</button>
+                    <button class="quick-btn" data-amount="100">100</button>
+                    <button class="quick-btn" data-amount="1000">1K</button>
+                    <button class="quick-btn" data-amount="10000">10K</button>
+                </div>
+
+                <form class="converter-form">
+                    <!-- Amount Input Section -->
+                    <div class="input-section">
+                        <div class="amount-group">
+                            <label for="amount">Amount</label>
+                            <div class="amount-input-wrapper">
+                                <input id="amount" value="100" type="text" placeholder="Enter amount" autocomplete="off" />
+                                <div class="input-focus-border"></div>
+                            </div>
                         </div>
                     </div>
-                    <span class="fa-arrow-right-arrow-left swap-btn" title="Swap currencies"></span>
-                    <div class="to">
-                        <p>To</p>
-                        <div class="select-container">
-                            <img src="https://flagsapi.com/IN/flat/64.png">   
-                            <select name="to">
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="AUD">AUD</option>
-                                <option value="INR" selected>INR</option>
-                            </select>
+
+                    <!-- Currency Selection -->
+                    <div class="currency-section">
+                        <div class="currency-row">
+                            <div class="currency-group from-group">
+                                <label>From</label>
+                                <div class="currency-selector">
+                                    <div class="flag-container">
+                                        <img src="https://flagsapi.com/US/flat/64.png" alt="USD Flag" class="flag-img">
+                                    </div>
+                                    <select name="from" class="currency-select">
+                                        <option value="USD">USD</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="AUD">AUD</option>
+                                        <option value="INR">INR</option>
+                                    </select>
+                                    <div class="select-arrow">▼</div>
+                                </div>
+                            </div>
+
+                            <div class="swap-container">
+                                <button type="button" class="swap-btn" title="Swap currencies">
+                                    <span class="icon icon-swap"></span>
+                                </button>
+                            </div>
+
+                            <div class="currency-group to-group">
+                                <label>To</label>
+                                <div class="currency-selector">
+                                    <div class="flag-container">
+                                        <img src="https://flagsapi.com/IN/flat/64.png" alt="INR Flag" class="flag-img">
+                                    </div>
+                                    <select name="to" class="currency-select">
+                                        <option value="USD">USD</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="AUD">AUD</option>
+                                        <option value="INR" selected>INR</option>
+                                    </select>
+                                    <div class="select-arrow">▼</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result Section -->
+                    <div class="result-section">
+                        <div class="result-card">
+                            <div class="result-content">
+                                <div class="result-text">1 USD = 80 INR</div>
+                                <div class="rate-info">
+                                    <span class="rate-time">Updated just now</span>
+                                    <span class="rate-change positive">+0.12%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="loading-state" style="display: none;">
+                            <span class="icon icon-spinner spin"></span>
+                            <span>Fetching latest rates...</span>
+                        </div>
+                        
+                        <div class="error-state" style="display: none;">
+                            <div class="error-content">
+                                <span class="error-icon">⚠️</span>
+                                <span class="error-text"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button type="submit" class="convert-btn">
+                        <span class="btn-text">Convert Currency</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+
+                <!-- Additional Features -->
+                <div class="features-section">
+                    <div class="feature-tabs">
+                        <button class="tab-btn active" data-tab="chart">Rate Chart</button>
+                        <button class="tab-btn" data-tab="history">History</button>
+                        <button class="tab-btn" data-tab="favorites">Favorites</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-panel active" id="chart-panel">
+                            <div class="chart-placeholder">
+                                <div class="chart-bars">
+                                    <div class="bar" style="height: 60%"></div>
+                                    <div class="bar" style="height: 80%"></div>
+                                    <div class="bar" style="height: 45%"></div>
+                                    <div class="bar" style="height: 90%"></div>
+                                    <div class="bar" style="height: 70%"></div>
+                                    <div class="bar" style="height: 85%"></div>
+                                    <div class="bar" style="height: 65%"></div>
+                                </div>
+                                <p>7-day exchange rate trend</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-panel" id="history-panel">
+                            <div class="history-list">
+                                <div class="history-item">
+                                    <div class="history-conversion">100 USD → 8,312 INR</div>
+                                    <div class="history-time">2 minutes ago</div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-conversion">50 EUR → 4,890 INR</div>
+                                    <div class="history-time">1 hour ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-panel" id="favorites-panel">
+                            <div class="favorites-grid">
+                                <div class="favorite-pair">
+                                    <span class="pair-text">USD/INR</span>
+                                    <span class="pair-rate">83.12</span>
+                                </div>
+                                <div class="favorite-pair">
+                                    <span class="pair-text">EUR/USD</span>
+                                    <span class="pair-rate">1.18</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="msg">1 USD = 80 INR</div>
-            <div class="loading" style="display: none;">
-                <span class="fa-spinner fa-spin"></span> Loading...
-            </div>
-            <div class="error" style="display: none;"></div>
-            <button>Get Exchange Rate</button>
-        </form>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toastContainer"></div>
     </div>
+
     <script src="code.js"></script>
     <script src="app.js"></script>
 </body>
